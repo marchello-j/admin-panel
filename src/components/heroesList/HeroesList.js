@@ -22,13 +22,6 @@ const HeroesList = () => {
 			}
 		}
 	);
-	// const filteredHeroes = useSelector((state) => {
-	// 	if (state.filters.activeFilter === 'all') {
-	// 		return state.heroes.heroes;
-	// 	} else {
-	// 		return state.heroes.heroes.filter((item) => item.element === state.filters.activeFilter);
-	// 	}
-	// });
 	const filteredHeroes = useSelector(filteredHeroesSelector);
 
 	const heroesLoadingStatus = useSelector((state) => state.heroes.heroesLoadingStatus);
@@ -36,13 +29,12 @@ const HeroesList = () => {
 	const { request } = useHttp();
 
 	useEffect(() => {
-		dispatch(fetchHeroes(request)); 
+		dispatch(fetchHeroes(request));
 		// eslint-disable-next-line
 	}, []);
 
 	const onDelete = useCallback(
 		(id) => {
-			// Удаление персонажа по его id
 			request(`http://localhost:3001/heroes/${id}`, 'DELETE')
 				.then((data) => console.log(data, 'Deleted'))
 				.then(dispatch(heroDeleted(id)))

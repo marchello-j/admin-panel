@@ -11,7 +11,6 @@ const HeroesFilters = () => {
 	const dispatch = useDispatch();
 	const { request } = useHttp();
 
-	// Запрос на сервер для получения фильтров и последовательной смены состояния
 	useEffect(() => {
 		dispatch(fetchFilters(request));
 		// eslint-disable-next-line
